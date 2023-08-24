@@ -12,14 +12,14 @@ def validate_input(prompt, valid_inputs):
             print("Invalid input, please try again.")
 
 def create_board():
-    board = [[0 for _ in range(8)] for _ in range(7)]  # 1-indexed board
+    board = [[0 for _ in range(8)] for _ in range(7)]  
     return board
 
 def print_board(board):
     print("========== Connect4 =========")
     print("Player 1: X            Player 2: O")
-    for row in range(1, len(board)):  # Start from 1
-        for col in range(1, len(board[row])):  # Start from 1
+    for row in range(1, len(board)):  
+        for col in range(1, len(board[row])): 
             cell = board[row][col]
             if cell == 0:
                 print("|---", end=" ")
@@ -32,7 +32,7 @@ def print_board(board):
 
 def drop_piece(board, player, col):
     row = len(board)-1
-    while row >= 1:  # Start from 1
+    while row >= 1:  
         if board[row][col] == 0:
             board[row][col] = player
             return True
@@ -51,33 +51,33 @@ def execute_player_turn(player, board):
             print("column is full")
 
 def end_game(board):
-    for row in range(1, len(board) - 3):  # Start from 1
+    for row in range(1, len(board) - 3): 
         for col in range(1, len(board[row])):
             if all(board[row + i][col] == 1 for i in range(4)):
-                return 1  # Player 1 wins
+                return 1  
             elif all(board[row + i][col] == 2 for i in range(4)):
-                return 2  # Player 2 wins
+                return 2 
 
     for row in range(1, len(board)):
-        for col in range(1, len(board[row]) - 3):  # Start from 1
+        for col in range(1, len(board[row]) - 3):  
             if all(board[row][col + i] == 1 for i in range(4)):
-                return 1  # Player 1 wins
+                return 1  
             elif all(board[row][col + i] == 2 for i in range(4)):
-                return 2  # Player 2 wins
+                return 2  
 
-    for row in range(1, len(board) - 3):  # Start from 1
-        for col in range(1, len(board[row]) - 3):  # Start from 1
+    for row in range(1, len(board) - 3): 
+        for col in range(1, len(board[row]) - 3): 
             if all(board[row + i][col + i] == 1 for i in range(4)):
-                return 1  # Player 1 wins
+                return 1  
             elif all(board[row + i][col + i] == 2 for i in range(4)):
-                return 2  # Player 2 wins
+                return 2  
 
-    for row in range(1, len(board) - 3):  # Start from 1
+    for row in range(1, len(board) - 3):  
         for col in range(4, len(board[row])):
             if all(board[row + i][col - i] == 1 for i in range(4)):
-                return 1  # Player 1 wins
+                return 1  
             elif all(board[row + i][col - i] == 2 for i in range(4)):
-                return 2  # Player 2 wins
+                return 2  
 
     for row in board:
         if 0 not in row:
